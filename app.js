@@ -20,6 +20,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use('/users', users);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
 
 app.get('/', (req, res) => {
     res.send('invalid endpoint');
